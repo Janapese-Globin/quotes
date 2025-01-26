@@ -47,14 +47,23 @@ public class QuoteController {
 
     @GetMapping("/random")
     public ResponseEntity<Quote> getRandomQuote() {
-        List<Quote> quotes = quoteService.getAll();
+        Quote found = this.quoteService.getRandomQuote();
 
-        if(quotes.isEmpty()){
+        if(found == null){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        int randomNumber = (int) (Math.random() * quotes.size());
+        return new ResponseEntity<>(found, HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>(quotes.get(randomNumber), HttpStatus.OK);
+    @GetMapping("/daily")
+    public ResponseEntity<Quote> getDailyQuote() {
+        Quote found = quoteService.getDailyQuote();
+
+        if(found == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(found, HttpStatus.OK);
     }
 }

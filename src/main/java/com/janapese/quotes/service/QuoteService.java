@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class QuoteService {
+    private Long lastDailyQuote;
+    private Quote dailyQuote;
+
     private final QuoteRepository quoteRepository;
 
     public QuoteService(QuoteRepository quoteRepository) {
@@ -25,6 +28,25 @@ public class QuoteService {
 
     public Quote getById(int id){
         return quoteRepository.findById((long) id).orElse(null);
+    }
+
+    public Quote getDailyQuote() {
+        if(this.lastDailyQuote == null || this.lastDailyQuote + 86400 < System.currentTimeMillis()){
+            this.dailyQuote = getRandomQuote();
+            this.lastDailyQuote = System.currentTimeMillis();
+        }
+
+        return this.dailyQuote;
+    }
+
+    public Quote getRandomQuote() {
+        List<Quote> allQuotes = quoteRepository.findAll();
+
+        if(allQuotes.isEmpty()){
+            return null;
+        }
+
+        return allQuotes.get((int) (Math.random() * allQuotes.size()));
     }
 
     public Quote create(Quote quote){
