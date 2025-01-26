@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
         <title>Quotes</title>
     </head>
 
@@ -9,14 +9,15 @@
             <h2>Click the button to generate a quote!</h2>
         </div>
 
-        <div class="random-quote">
-            <button>Random Quote</button>
+        <div class="buttons">
+            <div class="quote-actions">
+
+            <button name="daily" class="quote-actions submit" type="button" value="Daily" onclick="dailyQuote()">Daily</button>
+            <button name="random" class="quote-actions cancel" type="button" value="Random" onclick="randomQuote()">Random</button>
+
+            </div>
         </div>
 
-        <div class="daily-quote">
-            <button>Daily Quote</button>
-        </div>
-
-        <script src="js/index.js"></script>
+        <script src="js/script.js"></script>
     </body>
 </html>
