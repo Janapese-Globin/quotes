@@ -32,7 +32,9 @@ docker compose down
 This project uses a simple stack as it is meant to be practice, the tech stack is:
 
 **Frontend:** HTML, CSS, and JavaScript.
+
 **Backend:** Java with Springboot
+
 **Database:** PostgreSQL using JPA
 
 ## Credits
